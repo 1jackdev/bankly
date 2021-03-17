@@ -1,0 +1,5 @@
+- BUG #1: get /users returns more than expected (i.e. phone and email)
+- BUG #2: get /users/user1 returns successfully with user2's token
+- BUG #3: post /register was not requiring the admin prop, so we could not create admins
+- BUG #4: patch /users/user1 was requiring admin-status to edit fields, but we should allow all users to edit their own info
+- BUG #5: post /login was not awaiting User.authenticate, so the admin would always default to false. 

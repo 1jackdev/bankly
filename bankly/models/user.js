@@ -8,7 +8,8 @@ class User {
 
 /** Register user with data. Returns new user data. */
 
-  static async register({username, password, first_name, last_name, email, phone}) {
+  // FIXES BUG #3
+  static async register({username, password, first_name, last_name, email, phone, admin}) {
     const duplicateCheck = await db.query(
       `SELECT username 
         FROM users 
@@ -24,19 +25,20 @@ class User {
     }
 
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
-
+    // FIXES BUG #3
     const result = await db.query(
       `INSERT INTO users 
-          (username, password, first_name, last_name, email, phone) 
-        VALUES ($1, $2, $3, $4, $5, $6) 
-        RETURNING username, password, first_name, last_name, email, phone`,
+          (username, password, first_name, last_name, email, phone, admin) 
+        VALUES ($1, $2, $3, $4, $5, $6, $7) 
+        RETURNING username, password, first_name, last_name, email, phone, admin`,
       [
         username,
         hashedPassword,
         first_name,
         last_name,
         email,
-        phone
+        phone,
+        admin
       ]
     );
 
@@ -49,7 +51,6 @@ class User {
    * Return all user data if true, throws error if invalid
    *
    * */
-
   static async authenticate(username, password) {
     const result = await db.query(
       `SELECT username,
@@ -75,17 +76,16 @@ class User {
 
   /** Returns list of user info:
    *
-   * [{username, first_name, last_name, email, phone}, ...]
+   * [{username, first_name, last_name}, ...]
    *
    * */
 
   static async getAll(username, password) {
+    // FIXES BUG #1 - removed email and phone
     const result = await db.query(
       `SELECT username,
                 first_name,
-                last_name,
-                email,
-                phone
+                last_name
             FROM users 
             ORDER BY username`
     );
