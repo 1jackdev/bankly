@@ -9,7 +9,7 @@ Bankly is meant to mock a barebones internal user website for a bank.
 ## Get Started
 
 ```js
-cd bankly
+cd bankly/bankly
 npm install
 npm run seed # sets up the regular and test databases
 npm test  # runs jest
