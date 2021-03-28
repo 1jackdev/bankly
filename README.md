@@ -3,7 +3,7 @@
 
 This app uses Node.js, Express, and Postgres.
 
-Bankly is meant to mock a barebones internal user website for a bank. 
+Bankly is meant to mock a barebones internal user website. 
 
 
 ## Get Started
