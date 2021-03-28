@@ -24,6 +24,8 @@ Once started, use an API testing tool like Postman, Insomnia, etc.
 
 register a user (returns a token):
 
+auth/register
+
 ```JSON
 {
 "username": "new_user",
@@ -37,6 +39,8 @@ register a user (returns a token):
 ```
 \
 login (returns a token):
+
+auth/login
 ```JSON
 {
 "username": "u1",
@@ -47,6 +51,7 @@ login (returns a token):
 Get all users, and get details for a particular user. \
 When accessing /user routes, a valid token is required as part of the request body.
 
+/users/
 ```JSON
 {
   "_token": "Your token here"
