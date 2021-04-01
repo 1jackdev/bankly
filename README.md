@@ -34,7 +34,7 @@ auth/register
 "last_name": "new_last",
 "email": "new@newuser.com",
 "phone": "1233211221",
-"admin": "true",
+"admin": "true"
 }
 ```
 \
@@ -44,7 +44,7 @@ auth/login
 ```JSON
 {
 "username": "u1",
-"password": "pwd1",
+"password": "pwd1"
 }
 ```
 \
